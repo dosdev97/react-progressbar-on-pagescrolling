@@ -1,10 +1,25 @@
 import React, { Component } from "react";
+
 import "./App.css";
+import Progress from "./Progress";
 
 export default class App extends Component {
+  componentDidMount() {
+    this.listenToScrollEvent();
+  }
+
+  listenToScrollEvent = () => {
+    document.addEventListener("scroll", () => {
+      requestAnimationFrame(() => {
+        this.calculateScrollDistance();
+      });
+    });
+  };
+
   render() {
     return (
       <div className="App">
+        <Progress scroll="70%" />
         <header></header>
         <main>
           <h1>Lorem Ipsum</h1>
