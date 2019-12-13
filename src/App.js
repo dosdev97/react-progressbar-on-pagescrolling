@@ -4,6 +4,14 @@ import "./App.css";
 import Progress from "./Progress";
 
 export default class App extends Component {
+  state = {
+    scrollPosition: 0
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     this.listenToScrollEvent();
   }
@@ -14,6 +22,30 @@ export default class App extends Component {
         this.calculateScrollDistance();
       });
     });
+  };
+
+  calculateScrollDistance = () => {
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const docHeight = this.getDocHeight();
+
+    const totalDocScrollLength = docHeight - windowHeight;
+    const scrollPosition = Math.floor(scrollTop / totalDocScrollLength);
+
+    this.setState({
+      scrollPosition
+    });
+  };
+
+  getDocHeight = () => {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    );
   };
 
   render() {
