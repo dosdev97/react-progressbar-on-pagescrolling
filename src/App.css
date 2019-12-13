@@ -1,0 +1,13 @@
+header {
+  background: linear-gradient(to right, #302e24, #28313e);
+  height: 60px;
+  width: 100%;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 70px;
+}
+
+.App p,
+.App h1 {
+  margin: 30px auto;
+  width: 800px;
+}
